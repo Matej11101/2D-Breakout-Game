@@ -3,15 +3,15 @@ const cvs = document.getElementById("breakout");
 const ctx = cvs.getContext("2d");
 
 // ADD BORDER TO CANVAS
-cvs.style.border = "1px solid #0ff";
+cvs.style.border = "8px solid #0ff";
 
 // MAKE LINE THIK WHEN DRAWING TO CANVAS
-ctx.lineWidth = 3;
+
 
 // GAME VARIABLES AND CONSTANTS
 const PADDLE_WIDTH = 100;
-const PADDLE_MARGIN_BOTTOM = 50;
-const PADDLE_HEIGHT = 20;
+const PADDLE_MARGIN_BOTTOM = 4;
+const PADDLE_HEIGHT = 15;
 const BALL_RADIUS = 8;
 let LIFE = 3; // PLAYER HAS 3 LIVES
 let SCORE = 0;
@@ -24,11 +24,12 @@ let rightArrow = false;
 
 // CREATE THE PADDLE
 const paddle = {
-    x : cvs.width/2 - PADDLE_WIDTH/2,
+    x : cvs.width/1 - PADDLE_WIDTH/1,
     y : cvs.height - PADDLE_MARGIN_BOTTOM - PADDLE_HEIGHT,
     width : PADDLE_WIDTH,
     height : PADDLE_HEIGHT,
-    dx :5
+    
+    dx :8
 }
 
 // DRAW PADDLE
@@ -37,7 +38,9 @@ function drawPaddle(){
     ctx.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
     
     ctx.strokeStyle = "#ffcd05";
+    ctx.lineWidth = 3;
     ctx.strokeRect(paddle.x, paddle.y, paddle.width, paddle.height);
+    
 }
 
 // CONTROL THE PADDLE
@@ -62,6 +65,8 @@ function movePaddle(){
         paddle.x += paddle.dx;
     }else if(leftArrow && paddle.x > 0){
         paddle.x -= paddle.dx;
+        
+        
     }
 }
 
@@ -80,10 +85,11 @@ function drawBall(){
     ctx.beginPath();
     
     ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI*2);
-    ctx.fillStyle = "#ffcd05";
+    ctx.fillStyle = "#FF00FF";
     ctx.fill();
     
     ctx.strokeStyle = "#2e3548";
+    ctx.lineWidth = 1;
     ctx.stroke();
     
     ctx.closePath();
@@ -184,8 +190,12 @@ function drawBricks(){
                 ctx.fillStyle = brick.fillColor;
                 ctx.fillRect(b.x, b.y, brick.width, brick.height);
                 
+                
                 ctx.strokeStyle = brick.strokeColor;
+                ctx.lineWidth = 4;
                 ctx.strokeRect(b.x, b.y, brick.width, brick.height);
+                
+                
             }
         }
     }
@@ -203,6 +213,8 @@ function ballBrickCollision(){
                     ball.dy = - ball.dy;
                     b.status = false; // the brick is broken
                     SCORE += SCORE_UNIT;
+                    ball.speed += 0.2;
+                    
                 }
             }
         }
@@ -265,7 +277,7 @@ function levelUp(){
         }
         brick.row++;
         createBricks();
-        ball.speed += 0.5;
+        ball.speed += 1;
         resetBall();
         LEVEL++;
     }
