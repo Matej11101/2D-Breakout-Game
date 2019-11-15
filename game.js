@@ -9,15 +9,15 @@ cvs.style.border = "8px solid #0ff";
 
 
 // GAME VARIABLES AND CONSTANTS
-const PADDLE_WIDTH = 100;
-const PADDLE_MARGIN_BOTTOM = 4;
-const PADDLE_HEIGHT = 15;
+const PADDLE_WIDTH = 80;
+const PADDLE_MARGIN_BOTTOM = 5;
+const PADDLE_HEIGHT = 17;
 const BALL_RADIUS = 8;
-let LIFE = 3; // PLAYER HAS 3 LIVES
+let LIFE = 4; // PLAYER HAS 3 LIVES
 let SCORE = 0;
 const SCORE_UNIT = 10;
 let LEVEL = 1;
-const MAX_LEVEL = 3;
+const MAX_LEVEL = 5;
 let GAME_OVER = false;
 let leftArrow = false;
 let rightArrow = false;
@@ -213,7 +213,7 @@ function ballBrickCollision(){
                     ball.dy = - ball.dy;
                     b.status = false; // the brick is broken
                     SCORE += SCORE_UNIT;
-                    ball.speed += 0.2;
+                    
                     
                 }
             }
@@ -280,6 +280,7 @@ function levelUp(){
         ball.speed += 1;
         resetBall();
         LEVEL++;
+        
     }
 }
 
