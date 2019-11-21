@@ -3,7 +3,7 @@ const cvs = document.getElementById("breakout");
 const ctx = cvs.getContext("2d");
 
 // ADD BORDER TO CANVAS
-cvs.style.border = "8px solid #0ff";
+cvs.style.border = "9px solid #F00";
 
 // MAKE LINE THIK WHEN DRAWING TO CANVAS
 
@@ -12,8 +12,8 @@ cvs.style.border = "8px solid #0ff";
 const PADDLE_WIDTH = 80;
 const PADDLE_MARGIN_BOTTOM = 5;
 const PADDLE_HEIGHT = 17;
-const BALL_RADIUS = 8;
-let LIFE = 4; // PLAYER HAS 3 LIVES
+const BALL_RADIUS = 7;
+let LIFE = 5; // PLAYER HAS 3 LIVES
 let SCORE = 0;
 const SCORE_UNIT = 10;
 let LEVEL = 1;
@@ -29,7 +29,7 @@ const paddle = {
     width : PADDLE_WIDTH,
     height : PADDLE_HEIGHT,
     
-    dx :8
+    dx :7
 }
 
 // DRAW PADDLE
@@ -89,7 +89,7 @@ function drawBall(){
     ctx.fill();
     
     ctx.strokeStyle = "#2e3548";
-    ctx.lineWidth = 1;
+    ctx.lineWidth = 4;
     ctx.stroke();
     
     ctx.closePath();
@@ -241,11 +241,11 @@ function draw(){
     drawBricks();
     
     // SHOW SCORE
-    showGameStats(SCORE, 35, 25, SCORE_IMG, 5, 5);
+    showGameStats(SCORE, 35, 29, SCORE_IMG, 5, 10);
     // SHOW LIVES
-    showGameStats(LIFE, cvs.width - 25, 25, LIFE_IMG, cvs.width-55, 5); 
+    showGameStats(LIFE, cvs.width - 25, 29, LIFE_IMG, cvs.width-55, 10); 
     // SHOW LEVEL
-    showGameStats(LEVEL, cvs.width/2, 25, LEVEL_IMG, cvs.width/2 - 30, 5);
+    showGameStats(LEVEL, cvs.width/2, 29, LEVEL_IMG, cvs.width/2 - 30, 6);
 }
 
 // game over
